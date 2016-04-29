@@ -10,7 +10,7 @@ class Main_model extends CI_Model {
 		$query = "INSERT INTO users (name, alias, email, password, dob, created_at, modified_at) VALUES(?,?,?,?,?,NOW(),NOW());
 ";
 		$values =
-			 ["{$post['name']}","{$post['alias']}","{$post['email']}",$password,"{$post['dob']}"];
+			 ["{$post['name']}","{$post['alias']}","{$post['email_pk']}",$password,"{$post['dob']}"];
 		$this->db->query($query, $values);
 		return true;
 	}

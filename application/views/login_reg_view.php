@@ -25,7 +25,7 @@
        <form class="" action="/main/register" method="post">
          <label for="name">Name:</label><input type="text" name="name" value="">
         <label for="alias">Alias:</label><input type="text" name="alias" value="">
-        <label for="email">Email:</label><input type="email" name="email" value="">
+        <label for="email_pk">Email:</label><input type="email" name="email_pk" value="">
          <label for="password">Password:</label><input type="password" name="password" value="">
          <p>
            *Password should be at least 8 characters
@@ -39,7 +39,7 @@
        <h4>Login</h4>
        <form class="" action="/main/login" method="post">
          <label for="email">Email:</label><input type="email" name="email">
-         <label for="password">Password:</label><input type="password" name="password">
+         <label for="password_chk">Password:</label><input type="password" name="password_chk">
          <input type="submit"value="Login">
        </form>
      </div>
