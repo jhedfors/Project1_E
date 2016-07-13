@@ -22,7 +22,7 @@
    <div class="row">
      <div class="col s6">
        <h4>Register</h4>
-       <form class="" action="/main/register" method="post">
+       <form class="" action="/users/register" method="post">
          <label for="name">Name:</label><input type="text" name="name" value="">
         <label for="alias">Alias:</label><input type="text" name="alias" value="">
         <label for="email_pk">Email:</label><input type="email" name="email_pk" value="">
@@ -37,7 +37,7 @@
      </div>
      <div class="col s6">
        <h4>Login</h4>
-       <form class="" action="/main/login" method="post">
+       <form class="" action="/users/login" method="post">
          <label for="email">Email:</label><input type="email" name="email">
          <label for="password_chk">Password:</label><input type="password" name="password_chk">
          <input type="submit"value="Login">

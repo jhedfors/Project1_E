@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Users extends CI_Controller {
 	public function __construct(){
 		parent:: __construct();
-		$this->load->model('main_model');
+		$this->load->model('user_model');
 		$this->load->library('session');
 	}
 	public function index()
@@ -44,8 +44,8 @@ class Main extends CI_Controller {
 		}
 		else{
 			$post = $this->input->post();
-			if($this->main_model->register($post) ){
-				$record = $this->main_model->show_by_email($post['email_pk']);
+			if($this->user_model->register($post) ){
+				$record = $this->user_model->show_by_email($post['email_pk']);
 				$this->session->set_userdata('active_id' ,$record['id']);
 				$this->session->set_userdata('alias' ,$record['alias']);
 				redirect('friends');
@@ -54,7 +54,7 @@ class Main extends CI_Controller {
 		}
 	}
 	public function check_preexisting_email($post_email){
-		$record = $this->main_model->show_by_email($post_email);
+		$record = $this->user_model->show_by_email($post_email);
 		if($record){
 			$this->form_validation->set_message('check_preexisting_email', '%s is already in use');
 			return FALSE;
@@ -66,11 +66,11 @@ class Main extends CI_Controller {
 	public function check_credentials(){
 		$post = $this->input->post();
 		$record;
-		if ($this->main_model->show_by_email($post['email']) == null) {
+		if ($this->user_model->show_by_email($post['email']) == null) {
 			$this->form_validation->set_message('check_credentials', 'Email/Password incorrect');
 			return FALSE;
 		}
-		$record = $this->main_model->show_by_email($post['email']);
+		$record = $this->user_model->show_by_email($post['email']);
 		if($record['password'] != do_hash($post['password_chk'])) {
 			$this->form_validation->set_message('check_credentials', 'Email/Password incorrect');
 			return FALSE;
@@ -80,51 +80,8 @@ class Main extends CI_Controller {
 		$this->session->set_userdata('alias' ,$record['alias']);
 		return TRUE;
 	}
-
-	public function friends_view(){
-		$active_id = $this->session->userdata('active_id');
-		$data['friends'] = $this->main_model->show_friends();
-		$data['not_friends'] = $this->main_model->show_non_friends($active_id);
-
-		$this->load->view('friends_view',['data'=>$data]);
-
-	}
-	public function user_view($id){
-		$data = $this->main_model->show_by_id($id);
-		$this->load->view('user_view',['data'=>$data]);
-
-	}
-
-	public function add_friend($id){
-		$this->main_model->add_friend($id);
-		redirect('friends');
-	}
-
-	public function remove_friend($friendship_id){
-		$this->main_model->remove_friend($friendship_id);
-		redirect('friends');
-	}
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('/');
 	}
 }
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

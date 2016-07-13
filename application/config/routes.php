@@ -1,13 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$route['default_controller'] = "/main";
-$route['main'] = "/main/login_reg_view";
-$route['friends'] = "/main/friends_view";
-$route['user/(:num)'] = "/main/user_view/$1";
-$route['add_form'] = "/main/add_form";
-$route['add_friend/(:num)'] = "/main/add_friend/$1";
-$route['remove_friend/(:num)'] = "/main/remove_friend/$1";
-$route['logout'] = "/main/logout";
+$route['default_controller'] = "/users";
+$route['main'] = "/users/login_reg_view";
+$route['friends'] = "/friends/friends_view";
+$route['user/(:num)'] = "/friends/user_view/$1";
+$route['add_form'] = "/friends/add_form";
+$route['add_friend/(:num)'] = "/friends/add_friend/$1";
+$route['remove_friend/(:num)'] = "/friends/remove_friend/$1";
+$route['logout'] = "/users/logout";
 $route['404_override'] = '';
 
 
