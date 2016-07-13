@@ -16,7 +16,7 @@ class Friend_model extends CI_Model {
 	public function show_non_friends(){
 		$active_id = $this->session->userdata('active_id');
 		$query =
-			"SELECT friends.id as friend_id, friends.alias as alias from users AS friends
+			"SELECT DISTINCT friends.id as friend_id, friends.alias as alias from users AS friends
 			LEFT JOIN friendships ON friends.id = friendships.friend_id
 			LEFT JOIN users ON users.id = friendships.user_id
 			WHERE NOT friends.id IN
